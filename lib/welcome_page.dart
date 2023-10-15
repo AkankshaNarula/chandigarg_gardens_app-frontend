@@ -1,9 +1,10 @@
 import 'dart:async';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
-import 'package:tree_app/gardens_near_me.dart';
-import 'package:tree_app/search_gardens.dart';
+import 'package:tree_app/gardens_near_me.dart'; // Import your page files
+import 'package:tree_app/qr_scanner.dart';
 import 'package:tree_app/favorites.dart';
-import 'package:tree_app/settings.dart';
 
 class WelcomePage extends StatefulWidget {
   @override
@@ -40,31 +41,33 @@ class _WelcomePageState extends State<WelcomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              height: 300,
-              child: Stack(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    height: 240,
-                    decoration: BoxDecoration(
-                      color: Colors.white, // Your custom theme background color
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.asset(
-                          imagePaths[currentImageIndex],
-                          width: double.infinity,
-                          height: 240,
-                          fit: BoxFit.cover,
-                        ),
+            CarouselSlider(
+              options: CarouselOptions(
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 5),
+                enlargeCenterPage: true,
+              ),
+              items: imagePaths.map((imagePath) {
+                return Container(
+                  width: double.infinity,
+                  height: 240,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        imagePath,
+                        width: double.infinity,
+                        height: 240,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
-                ],
-              ),
+                );
+              }).toList(),
             ),
             Padding(
               padding: EdgeInsets.all(16.0),
@@ -75,9 +78,9 @@ class _WelcomePageState extends State<WelcomePage> {
                   Text(
                     'Welcome to Chandigarh Gardens',
                     style: TextStyle(
-                      fontSize: 24, // Your custom font size
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black, // Your custom text color
+                      color: Colors.black,
                     ),
                   ),
                   Padding(
@@ -85,8 +88,8 @@ class _WelcomePageState extends State<WelcomePage> {
                     child: Text(
                       'Discover the beauty of Chandigarh\'s iconic gardens and parks.',
                       style: TextStyle(
-                        fontSize: 16, // Your custom font size
-                        color: Colors.black, // Your custom text color
+                        fontSize: 16,
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -110,7 +113,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         width: double.infinity,
                         height: 60,
                         decoration: BoxDecoration(
-                          color: Colors.lightGreenAccent,
+                          color: Colors.limeAccent,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Padding(
@@ -156,7 +159,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => SearchGardensPage(),
+                          builder: (context) => QRScannerPage(),
                         ),
                       );
                     },
@@ -170,7 +173,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         width: double.infinity,
                         height: 60,
                         decoration: BoxDecoration(
-                          color: Colors.lightGreenAccent,
+                          color: Colors.limeAccent,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Padding(
@@ -180,7 +183,7 @@ class _WelcomePageState extends State<WelcomePage> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Icon(
-                                Icons.search_rounded,
+                                Icons.qr_code,
                                 color: Colors.black,
                                 size: 24,
                               ),
@@ -188,7 +191,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     12, 0, 12, 0),
                                 child: Text(
-                                  'Search Gardens',
+                                  'Scan QR',
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.black,
@@ -230,7 +233,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         width: double.infinity,
                         height: 60,
                         decoration: BoxDecoration(
-                          color: Colors.lightGreenAccent,
+                          color: Colors.limeAccent,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Padding(
@@ -267,67 +270,19 @@ class _WelcomePageState extends State<WelcomePage> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      // Navigate to Settings page
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SettingsPage(),
-                        ),
-                      );
-                    },
-                    child: Material(
-                      color: Colors.transparent,
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Container(
-                        width: double.infinity,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          color: Colors.lightGreenAccent,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Icon(
-                                Icons.settings_rounded,
-                                color: Colors.black,
-                                size: 24,
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    12, 0, 12, 0),
-                                child: Text(
-                                  'Settings',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                color: Colors.black,
-                                size: 18,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  // SizedBox(
+                  //  height: 20,
+                  // ),
                 ],
+              ),
+            ),
+            // Lottie Animation at the bottom of the screen
+            Container(
+              alignment: Alignment.bottomCenter,
+              child: Lottie.asset(
+                'images/img_wp.json',
+                width: 400, // Adjust the width and height as needed
+                height: 200,
               ),
             ),
           ],

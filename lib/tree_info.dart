@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:tree_app/favorites.dart';
+import 'package:tree_app/welcome_page.dart';
+import 'package:lottie/lottie.dart';
 
 const List<List<String>> arr = [
   [
@@ -13,14 +17,16 @@ const List<List<String>> arr = [
     'CH16002',
     'Acacia auriculiformis',
     'Australian wattle',
-    'An evergreen tree having Pendulous branches, This tree is medium-sized & bears yellow flowers. Wood of this tree is used as fuel',
+    'An evergreen tree having Pendulous branches, This tree is medium-sized & bears yellow flowers.',
+    'Wood of this tree is used as fuel',
     'September-November'
   ],
   [
     'CH16003',
     'Aegle marmelos',
     'Indian bael, Bael',
-    'Deciduous tree, alternate leaves, borne singly. In addition to the essential medicinal values, bael is reported as an important item in industrial food processing and an excellent source for extracting pharmaceuticals and many other economically important herbal compounds.',
+    'Deciduous tree, alternate leaves, borne singly.',
+    'In addition to the essential medicinal values, bael is reported as an important item in industrial food processing and an excellent source for extracting pharmaceuticals and many other economically important herbal compounds.',
     'April-May'
   ],
   [
@@ -99,14 +105,16 @@ const List<List<String>> arr = [
     'CH16013',
     'Bombax ceiba',
     'Simbal',
-    'Large deciduous tree, large red/orange flower The white fluffy fibers are carded into thread and woven into textiles in Nepal & India',
+    'Large deciduous tree, large red/orange flower.',
+    'The white fluffy fibers are carded into thread and woven into textiles in Nepal & India',
     'January-March'
   ],
   [
     'CH16014',
     'Callistemon lanceolatus',
     'Bottle brush',
-    'Dwarf tree with pendulous branches, Height - 15’ Used in roadside for planting and grouping',
+    'Dwarf tree with pendulous branches, Height - 15',
+    'Used in roadside for planting and grouping',
     'November-December'
   ],
   [
@@ -129,7 +137,8 @@ const List<List<String>> arr = [
     'CH16017',
     'Casuarina equisetifolia',
     'Jor Tor, She-Oak',
-    'Tall columnar tree, needle leaves Coaster sand dune stabilization, shelter-belts, land reclamation, and erosion control.',
+    'Tall columnar tree, needle leaves Coaster.',
+    'sand dune stabilization, shelter-belts, land reclamation, and erosion control.',
     'September-October'
   ],
   [
@@ -193,7 +202,7 @@ const List<List<String>> arr = [
     'Grevillea robusta',
     'Silver Oak',
     'Large evergreen tree, leaves pinnate, flower orange-colored.',
-    'Timber is used for cabinet work. Planted along road sides and parks.',
+    'Timber is used for cabinet work. Planted along " road sides and parks.',
     'April-May'
   ],
   [
@@ -232,7 +241,8 @@ const List<List<String>> arr = [
     'CH16030',
     'Lagerstroemia thorelli',
     'Pride of India, Queen’s flower',
-    'Dwarf tree with pink flower  The wood is used in India for boats, canoes, etc. Also has medicinal properties.',
+    'Dwarf tree with pink flower.',
+    'The wood is used in India for boats, canoes, etc. Also has medicinal properties.',
     'July – September'
   ],
   [
@@ -255,7 +265,8 @@ const List<List<String>> arr = [
     'CH16033',
     'Mangifera indica',
     'Mango',
-    'Large evergreen tree, dark grey bark. Used in chutney, pickles, and March-April',
+    'Large evergreen tree, dark grey bark.',
+    'Used in chutney, pickles, and March-April',
     'May-July'
   ],
   [
@@ -270,99 +281,141 @@ const List<List<String>> arr = [
     'CH16035',
     'Mimusops elengi',
     'Mulsari, Bullet wood tree',
-    'Large evergreen tree, dark grey bark. Wood is used for frames, furniture, etc. Fruits have medicinal properties. Bark is used for tanning & dyeing.',
+    'Large evergreen tree, dark grey bark.',
+    'Wood is used for frames, furniture, etc. Fruits have medicinal properties. Bark is used for tanning & dyeing.',
     'March-May'
   ],
   [
     'CH16036',
     'Pinus longifolia',
     'Chir Pine',
-    'Bark dark red-brown, thick, deeply and longitudinally fissured, scaly; winter buds. The timber is used for construction, furniture, etc., and the trunk as a source of resin.',
+    'Bark dark red-brown, thick, deeply and longitudinally fissured, scaly; winter buds.',
+    'The timber is used for construction, furniture, etc., and the trunk as a source of resin.',
     'March-May'
   ],
   [
     'CH16037',
     'Pongamia pinnata',
     'Indian beach, Papri',
-    'Evergreen tree, barks soft, grayish green. Wood is used for timber and fuelwood. Ash of wood is used for dyeing.',
+    'Evergreen tree, barks soft, grayish green.',
+    'Wood is used for timber and fuelwood. Ash of wood is used for dyeing.',
     'May-July'
   ],
   [
     'CH16038',
     'Salix babylonica',
     'Weeping willow',
-    'Large deciduous tree with grayish-brown or grayish-black bark with furrows. Weeping, pendulous branches, stems are reddish-brown to yellowish-brown. used to manufacture boxes and similar goods. plantations for use as a biomass fuel.',
+    'Large deciduous tree with grayish-brown or grayish-black bark with furrows.',
+    'Weeping, pendulous branches, stems are reddish-brown to yellowish-brown. used to manufacture boxes and similar goods. plantations for use as a biomass fuel.',
     'April-May'
   ],
   [
     'CH16039',
     'Brassia actinophylla',
     'Umbrella Tree, Palm',
-    'Shrub/small tree with palmately compound leaves. Stalked leaflets are broad. Continuously purify the air by filtering and removing toxins released by cigarette smoke.',
+    'Shrub/small tree with palmately compound leaves. Stalked leaflets are broad.',
+    'Continuously purify the air by filtering and removing toxins released by cigarette smoke.',
     'January-May'
   ],
   [
     'CH16040',
     'Saraca indica',
     'Asoka tree',
-    'Evergreen tree with beautiful fragrant flowers. Bark dark green. Medicinal properties.',
+    'Evergreen tree with beautiful fragrant flowers. ',
+    'Bark dark green. Medicinal properties.',
     'February-April'
   ],
   [
     'CH16041',
     'Swietenia mahagoni',
     'Mahogany',
-    'Evergreen tree, bark bitter, leaves paripinnate. Used for fine cabinet, timber is used for shipbuilding.',
+    'Evergreen tree, bark bitter, leaves paripinnate.',
+    'Used for fine cabinet, timber is used for shipbuilding.',
     'April-May'
   ],
   [
     'CH16042',
     'Tecoma argentea',
     'Tree of Gold, Silver Trumpet Tree',
-    'Evergreen tree, leaves opposite, yellow flowers. Ornamental tree in garden and along roadsides.',
+    'Evergreen tree, leaves opposite, yellow flowers.',
+    'Ornamental tree in garden and along roadsides.',
     'January- April'
   ],
   [
     'CH16043',
     'Terminalia bellirica',
     'Behera',
-    'Large deciduous tree, bark bluish flower. Used in Ayurveda to treat things like hepatitis, bronchitis, asthma, piles, diarrhea, coughs, and eye diseases.',
+    'Large deciduous tree, bark bluish flower.',
+    'Used in Ayurveda to treat things like hepatitis, bronchitis, asthma, piles, diarrhea, coughs, and eye diseases.',
     'May-June'
   ],
   [
     'CH16044',
     'Terminalia chebula',
     'Harad, Chebulic Myrobalan',
-    'Large deciduous tree, terminal spikes, drupes yellow to orange-brown in color. Tanning leather and dyeing cloth.',
+    'Large deciduous tree, terminal spikes, drupes yellow to orange-brown in color.',
+    'Tanning leather and dyeing cloth.',
     'May-June'
   ],
 ];
 
-class TreeInfoPage extends StatelessWidget {
+class TreeInfoPage extends StatefulWidget {
   final String uid;
 
   TreeInfoPage({required this.uid});
 
   @override
+  _TreeInfoPageState createState() => _TreeInfoPageState();
+}
+
+class _TreeInfoPageState extends State<TreeInfoPage> {
+  @override
   Widget build(BuildContext context) {
-    int index = arr.indexWhere((treeInfo) => treeInfo[0] == uid);
+    int index = arr.indexWhere((treeInfo) => treeInfo[0] == widget.uid);
 
     if (index != -1) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text('Tree Information'),
+      return WillPopScope(
+        onWillPop: () async {
+          // Handle back button press here
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) =>
+                  WelcomePage(), // Navigate to welcome_page.dart
+            ),
+            (Route<dynamic> route) =>
+                false, // Remove all previous routes from the stack
+          );
+          return false;
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('Tree Information'),
+          ),
+          body: TreeInfoStack(uid: widget.uid, treeInfo: arr[index]),
         ),
-        body: TreeInfoStack(uid: uid, treeInfo: arr[index]),
       );
     } else {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text('Tree Information'),
-        ),
-        body: Center(
-          child: Text('Sorry! No tree data found'),
-        ),
-      );
+      return WillPopScope(
+          onWillPop: () async {
+            // Handle back button press here
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                builder: (context) =>
+                    WelcomePage(), // Navigate to welcome_page.dart
+              ),
+              (Route<dynamic> route) =>
+                  false, // Remove all previous routes from the stack
+            );
+            return false;
+          },
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text('Tree Information'),
+            ),
+            body: Center(
+              child: Text('Sorry! No tree data found'),
+            ),
+          ));
     }
   }
 }
@@ -378,84 +431,157 @@ class TreeInfoStack extends StatefulWidget {
 }
 
 class _TreeInfoStackState extends State<TreeInfoStack> {
-  List<String> infoKeys = [
-    'Scientific Name'
-        'Common Name',
-    'Identifying Character',
-    'Economic Importance',
-    'Flowering Time',
-  ];
+  int _current = 0;
+  Map<String, dynamic> _selectedIndex = {};
 
-  int currentCardIndex = 0;
+  CarouselController _carouselController = CarouselController();
+
+  List<Map<String, dynamic>> _products = [];
+  void toggleFavorite() {
+    setState(() {
+      if (fav_arr.contains(widget.uid)) {
+        fav_arr.remove(widget.uid);
+      } else {
+        fav_arr.add(widget.uid);
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _products = [
+      {
+        'title': 'Scientific Name',
+        'image': 'images/img_sn.json',
+        'description': ' ${widget.treeInfo[_current + 1]}',
+      },
+      {
+        'title': 'Common Name',
+        'image': 'images/img_cn.json',
+        'description': ' ${widget.treeInfo[_current + 2]}',
+      },
+      {
+        'title': 'Identifying Character',
+        'image': 'images/img_ic.json',
+        'description': ' ${widget.treeInfo[_current + 3]}',
+      },
+      {
+        'title': 'Economic Importance',
+        'image': 'images/img_es.json',
+        'description': ' ${widget.treeInfo[_current + 4]}',
+      },
+      {
+        'title': 'Flowering Time',
+        'image': 'images/img_ft.json',
+        'description': ' ${widget.treeInfo[_current + 5]}',
+      },
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: PageView.builder(
-            itemCount: infoKeys.length,
-            onPageChanged: (index) {
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: toggleFavorite,
+        child: Icon(
+          fav_arr.contains(widget.uid)
+              ? Icons.favorite
+              : Icons.favorite_border_rounded,
+          color: fav_arr.contains(widget.uid) ? Colors.red : Colors.black,
+        ),
+      ),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: CarouselSlider(
+          carouselController: _carouselController,
+          options: CarouselOptions(
+            height: 450.0,
+            aspectRatio: 16 / 9,
+            viewportFraction: 0.70,
+            enlargeCenterPage: true,
+            pageSnapping: true,
+            onPageChanged: (index, reason) {
               setState(() {
-                currentCardIndex = index;
+                _current = index;
               });
             },
-            itemBuilder: (context, index) {
-              return AnimatedContainer(
-                duration: Duration(seconds: 1),
-                padding: EdgeInsets.all(16.0),
-                margin: EdgeInsets.all(16.0),
-                height: 200,
-                width: 300,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(0, 3),
+          ),
+          items: _products.map((product) {
+            return Builder(
+              builder: (BuildContext context) {
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      if (_selectedIndex == product) {
+                        _selectedIndex = {};
+                      } else {
+                        _selectedIndex = product;
+                      }
+                    });
+                  },
+                  child: AnimatedContainer(
+                    duration: Duration(milliseconds: 300),
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      border: _selectedIndex == product
+                          ? Border.all(color: Colors.blue.shade500, width: 3)
+                          : null,
+                      boxShadow: _selectedIndex == product
+                          ? [
+                              BoxShadow(
+                                color: Colors.blue.shade100,
+                                blurRadius: 30,
+                                offset: Offset(0, 10),
+                              )
+                            ]
+                          : [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.2),
+                                blurRadius: 20,
+                                offset: Offset(0, 5),
+                              )
+                            ],
                     ),
-                  ],
-                ),
-                child: Center(
-                  child: Text(
-                    '${infoKeys[index]}: Tree ${widget.uid} ${widget.treeInfo[index + 1]}',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 320,
+                            margin: EdgeInsets.only(top: 10),
+                            clipBehavior: Clip.hardEdge,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Lottie.asset(product['image'],
+                                fit: BoxFit.cover),
+                          ),
+                          SizedBox(height: 20),
+                          Text(
+                            product['title'],
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 20),
+                          Text(
+                            product['description'],
+                            style: TextStyle(
+                                fontSize: 14, color: Colors.grey.shade600),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              );
-            },
-          ),
-        ),
-        SizedBox(height: 20),
-        Text(
-          'Swipe to see more info',
-          style: TextStyle(
-            fontSize: 16,
-          ),
-        ),
-        SizedBox(height: 20),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(infoKeys.length, (index) {
-            return AnimatedContainer(
-              duration: Duration(milliseconds: 500),
-              height: 10,
-              width: 10,
-              margin: EdgeInsets.symmetric(horizontal: 5),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: index == currentCardIndex ? Colors.green : Colors.grey,
-              ),
+                );
+              },
             );
-          }),
+          }).toList(),
         ),
-      ],
+      ),
     );
   }
 }
