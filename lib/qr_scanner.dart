@@ -95,9 +95,9 @@ class _QRScannerPageState extends State<QRScannerPage> {
   }
 
   @override
-  void dispose() {
-    // Reset isScanCompleted to false when the page is disposed.
+  void initState() {
+    super.initState();
+    // Set isScanCompleted to false when the page is opened or initialized.
     isScanCompleted = false;
-    super.dispose();
   }
 }

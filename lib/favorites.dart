@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tree_app/tree_info.dart';
+
+List<String> fav_arr = [];
 
 class FavoritesPage extends StatelessWidget {
   @override
@@ -7,20 +10,30 @@ class FavoritesPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Gardens Near Me'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Welcome to Tree App Gardens Feature',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+      body: ListView.builder(
+        itemCount: fav_arr.length,
+        itemBuilder: (context, index) {
+          final uid = fav_arr[index];
+          final treeInfo = arr.firstWhere((tree) => tree[0] == uid);
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => TreeInfoPage(uid: uid),
+                ),
+              );
+            },
+            child: Card(
+              child: ListTile(
+                title:
+                    Text(treeInfo[2]), // Display common name as the card title
+                subtitle:
+                    Text(treeInfo[1]), // Display scientific name as subtitle
               ),
             ),
-            // Add your content for the Gardens Near Me page here
-          ],
-        ),
+          );
+        },
       ),
     );
   }
