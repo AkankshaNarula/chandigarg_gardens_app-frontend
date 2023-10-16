@@ -492,95 +492,108 @@ class _TreeInfoStackState extends State<TreeInfoStack> {
           color: fav_arr.contains(widget.uid) ? Colors.red : Colors.black,
         ),
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: CarouselSlider(
-          carouselController: _carouselController,
-          options: CarouselOptions(
-            height: 450.0,
-            aspectRatio: 16 / 9,
-            viewportFraction: 0.70,
-            enlargeCenterPage: true,
-            pageSnapping: true,
-            onPageChanged: (index, reason) {
-              setState(() {
-                _current = index;
-              });
-            },
-          ),
-          items: _products.map((product) {
-            return Builder(
-              builder: (BuildContext context) {
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      if (_selectedIndex == product) {
-                        _selectedIndex = {};
-                      } else {
-                        _selectedIndex = product;
-                      }
-                    });
-                  },
-                  child: AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                      border: _selectedIndex == product
-                          ? Border.all(color: Colors.blue.shade500, width: 3)
-                          : null,
-                      boxShadow: _selectedIndex == product
-                          ? [
-                              BoxShadow(
-                                color: Colors.blue.shade100,
-                                blurRadius: 30,
-                                offset: Offset(0, 10),
-                              )
-                            ]
-                          : [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                blurRadius: 20,
-                                offset: Offset(0, 5),
-                              )
+      body: Stack(
+        children: [
+          Image.asset('images/img_main.png',
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity),
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            child: CarouselSlider(
+              carouselController: _carouselController,
+              options: CarouselOptions(
+                height: 450.0,
+                aspectRatio: 16 / 9,
+                viewportFraction: 0.70,
+                enlargeCenterPage: true,
+                pageSnapping: true,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    _current = index;
+                  });
+                },
+              ),
+              items: _products.map((product) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          if (_selectedIndex == product) {
+                            _selectedIndex = {};
+                          } else {
+                            _selectedIndex = product;
+                          }
+                        });
+                      },
+                      child: AnimatedContainer(
+                        duration: Duration(milliseconds: 300),
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          border: _selectedIndex == product
+                              ? Border.all(
+                                  color: Colors.blue.shade500, width: 3)
+                              : null,
+                          boxShadow: _selectedIndex == product
+                              ? [
+                                  BoxShadow(
+                                    color: Colors.blue.shade100,
+                                    blurRadius: 30,
+                                    offset: Offset(0, 10),
+                                  )
+                                ]
+                              : [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.2),
+                                    blurRadius: 20,
+                                    offset: Offset(0, 5),
+                                  )
+                                ],
+                        ),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 220,
+                                margin: EdgeInsets.only(top: 10),
+                                clipBehavior: Clip.hardEdge,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Lottie.asset(product['image'],
+                                    fit: BoxFit.fill),
+                              ),
+                              SizedBox(height: 20),
+                              Text(
+                                product['title'],
+                                style: TextStyle(
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(height: 20),
+                              Text(
+                                product['description'],
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  color: Colors.grey.shade600,
+                                ),
+                              ),
                             ],
-                    ),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 320,
-                            margin: EdgeInsets.only(top: 10),
-                            clipBehavior: Clip.hardEdge,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Lottie.asset(product['image'],
-                                fit: BoxFit.cover),
                           ),
-                          SizedBox(height: 20),
-                          Text(
-                            product['title'],
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(height: 20),
-                          Text(
-                            product['description'],
-                            style: TextStyle(
-                                fontSize: 14, color: Colors.grey.shade600),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 );
-              },
-            );
-          }).toList(),
-        ),
+              }).toList(),
+            ),
+          ),
+        ],
       ),
     );
   }
