@@ -45,7 +45,7 @@ class _TreeInfoPageState extends State<TreeInfoPage> {
       throw Exception('Failed to load data');
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     int index = arr.indexWhere((treeInfo) => treeInfo[0] == widget.uid);
@@ -99,7 +99,7 @@ class _TreeInfoPageState extends State<TreeInfoPage> {
 
 class TreeInfoStack extends StatefulWidget {
   final String uid;
-  final List<String> treeInfo;
+  final List<dynamic> treeInfo;
 
   TreeInfoStack({required this.uid, required this.treeInfo});
 
