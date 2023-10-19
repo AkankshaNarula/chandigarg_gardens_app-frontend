@@ -1,16 +1,11 @@
-# tree_app
+# Concept
+A complete solution for generation of unique QR codes for dataset of plants and trees in Chandigarh.
 
-A new Flutter project.
+# Tech Stack
+1. Front-End: Flutter
+2. Back-End: Flask
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Contributors
+1. Akanksha Narula
+2. Gaurav Gupta
+3. Pranav Sharma
